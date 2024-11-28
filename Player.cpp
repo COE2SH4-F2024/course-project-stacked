@@ -1,4 +1,124 @@
+
 #include "Player.h"
+#include "MacUILib.h"
+
+
+Player::Player(GameMechs* thisGMRef)
+{
+    mainGameMechsRef = thisGMRef;
+    currentDirection = STOP;
+
+    // more actions to be included
+    playerPos.pos->x = mainGameMechsRef->getBoardSizeX()/2;
+    playerPos.pos->y = mainGameMechsRef->getBoardSizeY()/2;
+    playerPos.symbol = '*';
+}
+
+
+Player::~Player()
+{
+    // delete any heap members here
+    //delete playerPos.pos;
+}
+
+objPos Player::getPlayerPos() const
+{
+    // return the reference to the playerPos arrray list
+    return playerPos; // x,y,symbol through value
+}
+
+void Player::updatePlayerDir()
+{
+    // PPA3 input processing logic
+    char input = mainGameMechsRef->getInput();
+    //mainGameMechsRef->clearInput();
+    if (input !=0){
+    switch(input)
+    {                      
+        case 'w': //using enumeration to check direction to keep FSM logic 
+        case 'W':
+            if (currentDirection==LEFT || currentDirection==RIGHT || currentDirection == STOP)
+            {
+                currentDirection=UP;
+            }
+            break;
+
+        case 's':
+        case 'S':
+            if (currentDirection==LEFT || currentDirection==RIGHT ||currentDirection == STOP)
+            {
+                currentDirection=DOWN;
+            }
+            break;
+        case 'a':
+        case 'A':
+            if (currentDirection==UP || currentDirection == DOWN || currentDirection == STOP)
+            {
+                currentDirection=LEFT;
+            }
+            break;
+
+        case 'd':
+        case 'D':
+            if(currentDirection==UP || currentDirection==DOWN || currentDirection == STOP)
+            {
+                currentDirection =RIGHT;
+            }
+            break;
+
+        case STOP:
+        default:
+            break;
+    } 
+    }     
+}
+
+void Player::movePlayer()
+{
+    //char input = mainGameMechsRef->getInput();
+    // PPA3 Finite State Machine logic
+    switch(currentDirection)
+        {
+            case UP:  //implenting wraparound and matrix increase and decreasing.
+                playerPos.pos->y--;
+                if (playerPos.pos->y == 0)
+                {
+                    playerPos.pos->y = mainGameMechsRef -> getBoardSizeX()-1;
+                }
+                break;
+                
+            case DOWN:
+                playerPos.pos->y++;
+                if (playerPos.pos->y==mainGameMechsRef -> getBoardSizeX())
+                {
+                    playerPos.pos->y = 1;
+                }
+                break;
+
+            case LEFT:
+                playerPos.pos->x--;
+                if (playerPos.pos->x==0)
+                {
+                    playerPos.pos->x=(mainGameMechsRef->getBoardSizeY());
+                }
+                break;
+
+            case RIGHT:
+                playerPos.pos->x++;
+                if (playerPos.pos->x==(mainGameMechsRef->getBoardSizeY()))
+                {
+                    playerPos.pos->x = 1;
+                }
+                break;
+            case STOP:
+            default:
+            break;
+        //input = 0;
+        }
+}
+
+
+/* #include "Player.h"
 #include "MacUILib.h"
 
 
@@ -105,7 +225,7 @@ void Player::movePlayer()
         playerPos.pos->y = 1;
     
 
-}
+} */
 
 // More methods to be added
 char Player::getDirection()
@@ -128,4 +248,4 @@ char Player::getDirection()
             MacUILib_printf("UNKNOWN\n");
             break;
     };
-}
+} 

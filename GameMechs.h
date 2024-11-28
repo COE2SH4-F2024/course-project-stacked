@@ -8,8 +8,11 @@
 #include "objPosArrayList.h"
 #include "Food.h" // for debugging key of random food
 
-
 using namespace std;
+
+
+class Food;  // forward declaration 
+
 
 class GameMechs
 {
