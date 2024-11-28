@@ -5,7 +5,10 @@
 
 objPosArrayList::objPosArrayList()
 {
-    
+    aList = new objPos;
+    listSize = 0;
+    arrayCapacity = ARRAY_MAX_CAP;
+
 }
 
 objPosArrayList::~objPosArrayList()
