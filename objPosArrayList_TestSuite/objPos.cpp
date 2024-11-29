@@ -44,14 +44,13 @@ objPos& objPos::operator =(const objPos &pos1){
         pos = new Pos; // create new pointer
 
         pos->x= pos1.pos->x;
-        pos->x= pos1.pos->x;
+        pos->y= pos1.pos->y;
         symbol= pos1.symbol;
         
     }
 
     return *this;
 }
-
 
 
 void objPos::setObjPos(objPos o)
@@ -85,7 +84,7 @@ char objPos::getSymbol() const
 
 bool objPos::isPosEqual(const objPos* refPos) const
 {
-    return (refPos->pos->x == pos->x && refPos->pos->y == pos->y);
+    return (refPos->pos->x == pos->x && refPos->pos->y == pos->y && refPos->symbol == symbol);
 }
 
 char objPos::getSymbolIfPosEqual(const objPos* refPos) const

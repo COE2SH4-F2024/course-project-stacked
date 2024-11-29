@@ -44,7 +44,7 @@ objPos& objPos::operator =(const objPos &pos1){
         pos = new Pos; // create new pointer
 
         pos->x= pos1.pos->x;
-        pos->x= pos1.pos->x;
+        pos->y= pos1.pos->y;
         symbol= pos1.symbol;
         
     }

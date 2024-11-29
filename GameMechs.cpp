@@ -40,7 +40,7 @@ bool GameMechs::getLoseFlagStatus() const
     return loseFlag;
 }
     
-void GameMechs:: collectAsyncInput(Food* myFood, objPos blockOff)
+void GameMechs:: collectAsyncInput(Food* myFood, objPosArrayList* blockOff)
 {
     if (MacUILib_hasChar()) {
 
@@ -97,12 +97,17 @@ int GameMechs::getBoardSizeY() const
 
 void GameMechs::setExitTrue()
 {
+    MacUILib_Delay(1000000);
     exitFlag = true;
 }
 
 void GameMechs::setLoseFlag()
 {
     loseFlag = true;
+    
+    if (getLoseFlagStatus() == true){
+        MacUILib_printf ("\nGame over: You Lose\n");
+    }
 }
 
 void GameMechs::setInput(char this_input)

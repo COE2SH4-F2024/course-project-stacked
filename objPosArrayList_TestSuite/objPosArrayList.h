@@ -18,7 +18,7 @@ class objPosArrayList
         objPosArrayList(const objPosArrayList &a);
         objPosArrayList& operator =(const objPosArrayList &a);
 
-        int getSize();
+        int getSize() const;
         void insertHead(objPos thisPos);
         void insertTail(objPos thisPos);
         void removeHead();

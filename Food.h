@@ -20,7 +20,7 @@ class Food
         Food();
         ~Food();
 
-        void generateFood(objPos blockOff);
+        void generateFood(objPosArrayList* blockOff);
         objPos getFoodPos() const; // Upgrade this in iteration 3.       
         
 

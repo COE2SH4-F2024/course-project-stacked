@@ -48,7 +48,7 @@ class GameMechs
         
         // More methods should be added here
         // for debugging key of random food
-        void collectAsyncInput(Food* myFood, objPos blockOff); 
+        void collectAsyncInput(Food* myFood, objPosArrayList* blockOff); 
         
 };
 

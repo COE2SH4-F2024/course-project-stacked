@@ -50,8 +50,8 @@ void Initialize(void)
     MacUILib_clearScreen();
 
     myGM = new GameMechs();
-    myPlayer = new Player(myGM); // creating player object on the heap
     myFood = new Food();
+    myPlayer = new Player(myGM, myFood); // creating player object on the heap
     myFood -> generateFood(myPlayer->getPlayerPos());
 
 
@@ -79,11 +79,12 @@ void DrawScreen(void)
 {
     MacUILib_clearScreen();  
 
-    objPos playerPos = myPlayer -> getPlayerPos(); // goes into copy assignement operator
+    objPosArrayList* playerPos = myPlayer -> getPlayerPos(); // goes into copy assignement operator
+    int playerSize = playerPos->getSize();
     objPos foodPos = myFood -> getFoodPos();
-    MacUILib_printf("Player [x, y, sym] = [%d, %d, %c, ]\n", playerPos.pos->x, playerPos.pos->y, playerPos.symbol);
+    //MacUILib_printf("Player [x, y, sym] = [%d, %d, %c, ]\n", playerPos.pos->x, playerPos.pos->y, playerPos.symbol);
 
-    int j, i;
+    int j, i, flag;
 
     for (i=0; i<=myGM ->getBoardSizeY();)
     {
@@ -102,29 +103,45 @@ void DrawScreen(void)
         {
            for (j=0; j<=myGM ->getBoardSizeX(); j++)
             {
-                if (j==0)
-                {
-                    MacUILib_printf("#");
+                flag = 0;
+                for( int k=0; k<playerSize;k++){
+                    objPos thisSeg = playerPos -> getElement(k);
+                    if(thisSeg.pos->x == j && thisSeg.pos->y == i)
+                    {
+
+                        MacUILib_printf("%c", thisSeg.symbol);
+                        flag = 1;
+                        break;
+                    }
                 }
                 
-                else if (j==myGM ->getBoardSizeX())
+                if (flag ==0)
                 {
-                    MacUILib_printf("#");
-                }
 
-                else if ( playerPos.pos->x == j && playerPos.pos->y == i)
-                {
-                    MacUILib_printf("%c", playerPos.symbol);
-                }
+                    if (j==0)
+                    {
+                        MacUILib_printf("#");
+                    }
+                    
+                    else if (j==myGM ->getBoardSizeX())
+                    {
+                        MacUILib_printf("#");
+                    }
 
-                else if ( foodPos.pos->x == j && foodPos.pos->y == i)
-                {
-                    MacUILib_printf("%c", foodPos.symbol);
-                }
+                    /* else if ( playerPos.pos->x == j && playerPos.pos->y == i)
+                    {
+                        MacUILib_printf("%c", playerPos.symbol);
+                    } */
 
-                else 
-                {
-                    MacUILib_printf(" ");
+                    else if ( foodPos.pos->x == j && foodPos.pos->y == i)
+                    {
+                        MacUILib_printf("%c", foodPos.symbol);
+                    }
+
+                    else 
+                    {
+                        MacUILib_printf(" ");
+                    }
                 }
 
             } 
@@ -137,9 +154,9 @@ void DrawScreen(void)
 
     }
 
-    if (myGM->getLoseFlagStatus() == true){
-        MacUILib_printf ("\nGame over: You Lose\n");
-    }
+    //if (myGM->getLoseFlagStatus() == true){
+       // MacUILib_printf ("\nGame over: You Lose\n");
+    //}
 
     MacUILib_printf("\nscore is: %d\n", myGM->getScore());
 
