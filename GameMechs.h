@@ -47,7 +47,7 @@ class GameMechs
         void incrementScore(int value = 1);
         
         // More methods should be added here
-        // for debugging key of random food
+        // myFood and blockOff passed for debugging key of random food
         void collectAsyncInput(Food* myFood, objPosArrayList* blockOff); 
         
 };

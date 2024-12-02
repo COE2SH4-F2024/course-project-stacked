@@ -9,7 +9,7 @@ GameMechs::GameMechs()
     loseFlag = false;
     score = 0;
 
-    boardSizeX = 29;
+    boardSizeX = 30;
     boardSizeY = 15;
 }
 
@@ -51,7 +51,7 @@ void GameMechs:: collectAsyncInput(Food* myFood, objPosArrayList* blockOff)
         setExitTrue();
     }
 
-    //debug score case
+    /* //debug score case
     if(input == 'i')
     {
         incrementScore();
@@ -60,15 +60,14 @@ void GameMechs:: collectAsyncInput(Food* myFood, objPosArrayList* blockOff)
     if(input == 'l')
     {
         setLoseFlag();
-    }
+    }*/
 
-    //debug clear and new food
+    /* //debug clear and new food
     if (input == 'c')
     {
         myFood-> generateFood(blockOff);
-    } 
-}
-
+    }  */
+} 
 char GameMechs::getInput()
 {
     return input;
@@ -106,7 +105,8 @@ void GameMechs::setLoseFlag()
     loseFlag = true;
     
     if (getLoseFlagStatus() == true){
-        MacUILib_printf ("\nGame over: You Lose\n");
+        MacUILib_printf ("\n*****Game over: You Lose*****\n");
+        MacUILib_Delay(1000000);
     }
 }
 

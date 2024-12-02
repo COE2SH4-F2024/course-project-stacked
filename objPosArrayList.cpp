@@ -41,7 +41,6 @@ objPosArrayList& objPosArrayList::operator = (const objPosArrayList &a) // copy 
 
         for(int i=0;i<listSize;i++)
         {
-            //this->aList[i] = a.aList[i];
             aList[i] = a.aList[i];
         }
     }
@@ -55,11 +54,7 @@ int objPosArrayList::getSize()
 }
 void objPosArrayList::insertHead(objPos thisPos)
 {
-    // if(listSize == arrayCapacity)
-    // {
-    //     cout << "Array capacity exceeded" << endl;
-    //     return;
-    // }
+    
     for(int i=listSize;i>0;--i)
     {
         aList[i] = aList[i-1];
@@ -69,20 +64,12 @@ void objPosArrayList::insertHead(objPos thisPos)
 }
 void objPosArrayList::insertTail(objPos thisPos)
 {
-//     if(listSize == arrayCapacity)
-//     {
-//         setExitTrue();
-//     }
     aList[listSize] = thisPos;
     ++listSize;
 }
 void objPosArrayList::removeHead()
 {
-    //the below will never occur
-    // if(listSize == 0)
-    // {
-    //     return;
-    // }
+    
     for(int i=0;i<listSize-1;i++)
     {
         aList[i] = aList[i+1];
@@ -91,11 +78,7 @@ void objPosArrayList::removeHead()
 }
 void objPosArrayList::removeTail()
 {
-    //the below condition will never occur as * is initialized to 1
-    // if(listSize == 0)
-    // {
-    //     return;
-    // }
+    
     --listSize; // Lazy delete
 }
 

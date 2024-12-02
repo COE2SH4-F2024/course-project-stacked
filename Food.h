@@ -22,7 +22,6 @@ class Food
 
         void generateFood(objPosArrayList* blockOff);
         objPos getFoodPos() const; // Upgrade this in iteration 3. 
-        objPosArrayList* getFoodBucket() const;  
         
 
         // More methods to be added heres
