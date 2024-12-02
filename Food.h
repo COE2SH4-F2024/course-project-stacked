@@ -21,13 +21,14 @@ class Food
         ~Food();
 
         void generateFood(objPosArrayList* blockOff);
-        objPos getFoodPos() const; // Upgrade this in iteration 3.       
+        objPos getFoodPos() const; // Upgrade this in iteration 3. 
+        objPosArrayList* getFoodBucket() const;  
         
 
-        // More methods to be added here
+        // More methods to be added heres
 
     private:
-        objPos foodPos; // Upgrade this in iteration 3.       
+        objPos foodPos; // Upgrade this in iteration 3.    
 
         // Need a reference to the Main Game Mechanisms
 };
